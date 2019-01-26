@@ -11,7 +11,7 @@ clean:
 	rm -rf binaries/
 	rm -rf release/
 
-release: README.md
+release: README.md zip
 	git add README.md
 	git add Makefile
 	git commit -am "Release $(VERSION)" || true
