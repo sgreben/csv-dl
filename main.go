@@ -37,6 +37,7 @@ var config struct {
 	Force       bool
 	Parallelism int
 	RateLimit   time.Duration
+	Headers     headersVar
 }
 
 func init() {
@@ -57,6 +58,8 @@ func init() {
 	flag.DurationVar(&config.RateLimit, "rate-limit", config.RateLimit, "at most one-request-per-$duration (0 = off)")
 	flag.Var(&config.Links, "l", "(alias for -link)")
 	flag.Var(&config.Links, "link", `a link to download, may use go {{template}} syntax and refer to data columns by index (column i) or name (field "f")`)
+	flag.Var(&config.Headers, "H", "(alias for -http-header)")
+	flag.Var(&config.Headers, "http-header", config.Headers.Help())
 	flag.Parse()
 	if config.Quiet {
 		log.SetOutput(ioutil.Discard)
@@ -105,6 +108,9 @@ func download(urls chan string, rateLimitTick <-chan time.Time) {
 			nonzeroExit = true
 			log.Printf("error building request for %q: %v", link, err)
 			continue
+		}
+		for k, v := range config.Headers.Values {
+			req.Header.Add(k, v)
 		}
 		if rateLimitTick != nil {
 			<-rateLimitTick
