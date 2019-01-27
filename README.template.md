@@ -88,6 +88,7 @@ $ <input.csv csv-dl -u -l '{{field "release"}}' -l '{{field "source"}}'
 2019/01/27 12:42:23 https://github.com/sgreben/csv-dl/archive/0.0.1.tar.gz
 
 $ ls
+0.0.1.tar.gz
 csv-dl_0.0.1_linux_x86_64.zip
 ```
 
