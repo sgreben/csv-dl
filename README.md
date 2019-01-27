@@ -106,16 +106,16 @@ Or [download the binary](https://github.com/sgreben/csv-dl/releases/latest) from
 
 ```bash
 # Linux
-curl -LO https://github.com/sgreben/csv-dl/releases/download/1.0.2/csv-dl_1.0.2_linux_x86_64.zip
-unzip csv-dl_1.0.2_linux_x86_64.zip
+curl -LO https://github.com/sgreben/csv-dl/releases/download/1.1.0/csv-dl_1.1.0_linux_x86_64.zip
+unzip csv-dl_1.1.0_linux_x86_64.zip
 
 # OS X
-curl -LO https://github.com/sgreben/csv-dl/releases/download/1.0.2/csv-dl_1.0.2_osx_x86_64.zip
-unzip csv-dl_1.0.2_osx_x86_64.zip
+curl -LO https://github.com/sgreben/csv-dl/releases/download/1.1.0/csv-dl_1.1.0_osx_x86_64.zip
+unzip csv-dl_1.1.0_osx_x86_64.zip
 
 # Windows
-curl -LO https://github.com/sgreben/csv-dl/releases/download/1.0.2/csv-dl_1.0.2_windows_x86_64.zip
-unzip csv-dl_1.0.2_windows_x86_64.zip
+curl -LO https://github.com/sgreben/csv-dl/releases/download/1.1.0/csv-dl_1.1.0_windows_x86_64.zip
+unzip csv-dl_1.1.0_windows_x86_64.zip
 ```
 
 ## Usage
@@ -136,6 +136,10 @@ Usage of csv-dl:
   -q	(alias for -quiet)
   -quiet
     	suppress all logging
+  -r duration
+    	(alias for -rate-limit)
+  -rate-limit duration
+    	at most one-request-per-$duration (0 = off)
   -s string
     	(alias for -schema)
   -schema string

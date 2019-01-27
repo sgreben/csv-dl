@@ -1,4 +1,4 @@
-VERSION = 1.0.2
+VERSION = 1.1.0
 
 APP      := csv-dl
 PACKAGES := $(shell go list -f {{.Dir}} ./...)

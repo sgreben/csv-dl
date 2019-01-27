@@ -13,6 +13,7 @@ import (
 	"runtime"
 	"strings"
 	"sync"
+	"time"
 
 	"text/template"
 )
@@ -35,6 +36,7 @@ var config struct {
 	Links       stringsVar
 	Force       bool
 	Parallelism int
+	RateLimit   time.Duration
 }
 
 func init() {
@@ -51,6 +53,8 @@ func init() {
 	flag.StringVar(&config.Schema, "schema", config.Schema, "use the given CSV expression as the table schema")
 	flag.IntVar(&config.Parallelism, "p", config.Parallelism, "(alias for -parallel)")
 	flag.IntVar(&config.Parallelism, "parallel", config.Parallelism, "number of parallel connections")
+	flag.DurationVar(&config.RateLimit, "r", config.RateLimit, "(alias for -rate-limit)")
+	flag.DurationVar(&config.RateLimit, "rate-limit", config.RateLimit, "at most one-request-per-$duration (0 = off)")
 	flag.Var(&config.Links, "l", "(alias for -link)")
 	flag.Var(&config.Links, "link", `a link to download, may use go {{template}} syntax and refer to data columns by index (column i) or name (field "f")`)
 	flag.Parse()
@@ -87,7 +91,7 @@ func buildColumnNames(r *csv.Reader) (out []string) {
 	return
 }
 
-func download(urls chan string) {
+func download(urls chan string, rateLimitTick <-chan time.Time) {
 	for link := range urls {
 		name := filepath.Base(link)
 		if !config.Force {
@@ -101,6 +105,9 @@ func download(urls chan string) {
 			nonzeroExit = true
 			log.Printf("error building request for %q: %v", link, err)
 			continue
+		}
+		if rateLimitTick != nil {
+			<-rateLimitTick
 		}
 		resp, err := httpClient.Do(req)
 		if err != nil {
@@ -130,11 +137,15 @@ func download(urls chan string) {
 func main() {
 	links := make(chan string)
 	var wg sync.WaitGroup
+	var rateLimitTick <-chan time.Time
+	if config.RateLimit > 0 {
+		rateLimitTick = time.Tick(config.RateLimit)
+	}
 	for i := 0; i == 0 || i < config.Parallelism; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			download(links)
+			download(links, rateLimitTick)
 		}()
 	}
 
