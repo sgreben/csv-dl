@@ -61,7 +61,7 @@ func init() {
 
 func parseLinkTemplates(root *template.Template) (out []*template.Template) {
 	for _, linkTemplateText := range config.Links.Values {
-		linkTemplate, err := root.Parse(linkTemplateText)
+		linkTemplate, err := root.New("link").Parse(linkTemplateText)
 		if err != nil {
 			log.Fatalf("parse link template %q: %v", linkTemplateText, err)
 		}
