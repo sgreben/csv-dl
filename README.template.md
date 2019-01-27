@@ -2,6 +2,8 @@
 
 `csv-dl` reads CSV on stdin, and downloads linked files.
 
+![screenshot](doc/shot.png)
+
 - [Examples](#examples)
   - [Field names from CSV header](#field-names-from-csv-header)
   - [Field values by column index](#field-values-by-column-index)
