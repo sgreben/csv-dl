@@ -46,7 +46,7 @@ func init() {
 	flag.BoolVar(&config.Force, "force-overwrite", config.Force, "overwrite existing files")
 	flag.BoolVar(&config.UseHeader, "u", config.UseHeader, "(alias for -use-csv-header)")
 	flag.BoolVar(&config.UseHeader, "use-csv-header", config.UseHeader, "assume the first row is the CSV header, use it as a schema")
-	flag.BoolVar(&config.SkipHeader, "skip-csv-eader", config.SkipHeader, "assume the first row is the CSV header, skip it")
+	flag.BoolVar(&config.SkipHeader, "skip-csv-header", config.SkipHeader, "assume the first row is the CSV header, skip it")
 	flag.StringVar(&config.Schema, "s", config.Schema, "(alias for -schema)")
 	flag.StringVar(&config.Schema, "schema", config.Schema, "use the given CSV expression as the table schema")
 	flag.IntVar(&config.Parallelism, "p", config.Parallelism, "(alias for -parallel)")

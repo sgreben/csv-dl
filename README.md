@@ -104,16 +104,16 @@ Or [download the binary](https://github.com/sgreben/csv-dl/releases/latest) from
 
 ```bash
 # Linux
-curl -LO https://github.com/sgreben/csv-dl/releases/download/1.0.1/csv-dl_1.0.1_linux_x86_64.zip
-unzip csv-dl_1.0.1_linux_x86_64.zip
+curl -LO https://github.com/sgreben/csv-dl/releases/download/1.0.2/csv-dl_1.0.2_linux_x86_64.zip
+unzip csv-dl_1.0.2_linux_x86_64.zip
 
 # OS X
-curl -LO https://github.com/sgreben/csv-dl/releases/download/1.0.1/csv-dl_1.0.1_osx_x86_64.zip
-unzip csv-dl_1.0.1_osx_x86_64.zip
+curl -LO https://github.com/sgreben/csv-dl/releases/download/1.0.2/csv-dl_1.0.2_osx_x86_64.zip
+unzip csv-dl_1.0.2_osx_x86_64.zip
 
 # Windows
-curl -LO https://github.com/sgreben/csv-dl/releases/download/1.0.1/csv-dl_1.0.1_windows_x86_64.zip
-unzip csv-dl_1.0.1_windows_x86_64.zip
+curl -LO https://github.com/sgreben/csv-dl/releases/download/1.0.2/csv-dl_1.0.2_windows_x86_64.zip
+unzip csv-dl_1.0.2_windows_x86_64.zip
 ```
 
 ## Use it
@@ -138,7 +138,7 @@ Usage of csv-dl:
     	(alias for -schema)
   -schema string
     	use the given CSV expression as the table schema
-  -skip-csv-eader
+  -skip-csv-header
     	assume the first row is the CSV header, skip it
   -u	(alias for -use-csv-header)
   -use-csv-header
