@@ -11,7 +11,7 @@
   - [Relative/incomplete links](#relativeincomplete-links)
   - [Multiple links per row](#multiple-links-per-row)
 - [Get it](#get-it)
-- [Use it](#use-it)
+- [Usage](#usage)
 
 ## Examples
 
@@ -118,7 +118,7 @@ curl -LO https://github.com/sgreben/csv-dl/releases/download/${VERSION}/csv-dl_$
 unzip csv-dl_${VERSION}_windows_x86_64.zip
 ```
 
-## Use it
+## Usage
 
 ```text
 $USAGE
