@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/csv"
 	"flag"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -38,6 +39,7 @@ var config struct {
 	Parallelism int
 	RateLimit   time.Duration
 	Headers     headersVar
+	DryRun      bool
 }
 
 func init() {
@@ -47,6 +49,8 @@ func init() {
 	flag.BoolVar(&config.Quiet, "quiet", config.Quiet, "suppress all logging")
 	flag.BoolVar(&config.Force, "f", config.Force, "(alias for -force-overwrite)")
 	flag.BoolVar(&config.Force, "force-overwrite", config.Force, "overwrite existing files")
+	flag.BoolVar(&config.DryRun, "n", config.DryRun, "(alias for -dry-run)")
+	flag.BoolVar(&config.DryRun, "dry-run", config.DryRun, "only print URLs to stdout (one per line), do not download")
 	flag.BoolVar(&config.UseHeader, "u", config.UseHeader, "(alias for -use-csv-header)")
 	flag.BoolVar(&config.UseHeader, "use-csv-header", config.UseHeader, "assume the first row is the CSV header, use it as a schema")
 	flag.BoolVar(&config.SkipHeader, "skip-csv-header", config.SkipHeader, "assume the first row is the CSV header, skip it")
@@ -207,6 +211,10 @@ func main() {
 				continue
 			}
 			link := buf.String()
+			if config.DryRun {
+				fmt.Println(link)
+				continue
+			}
 			log.Println(link)
 			links <- link
 		}

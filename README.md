@@ -106,16 +106,16 @@ Or [download the binary](https://github.com/sgreben/csv-dl/releases/latest) from
 
 ```bash
 # Linux
-curl -LO https://github.com/sgreben/csv-dl/releases/download/1.2.0/csv-dl_1.2.0_linux_x86_64.zip
-unzip csv-dl_1.2.0_linux_x86_64.zip
+curl -LO https://github.com/sgreben/csv-dl/releases/download/1.3.0/csv-dl_1.3.0_linux_x86_64.zip
+unzip csv-dl_1.3.0_linux_x86_64.zip
 
 # OS X
-curl -LO https://github.com/sgreben/csv-dl/releases/download/1.2.0/csv-dl_1.2.0_osx_x86_64.zip
-unzip csv-dl_1.2.0_osx_x86_64.zip
+curl -LO https://github.com/sgreben/csv-dl/releases/download/1.3.0/csv-dl_1.3.0_osx_x86_64.zip
+unzip csv-dl_1.3.0_osx_x86_64.zip
 
 # Windows
-curl -LO https://github.com/sgreben/csv-dl/releases/download/1.2.0/csv-dl_1.2.0_windows_x86_64.zip
-unzip csv-dl_1.2.0_windows_x86_64.zip
+curl -LO https://github.com/sgreben/csv-dl/releases/download/1.3.0/csv-dl_1.3.0_windows_x86_64.zip
+unzip csv-dl_1.3.0_windows_x86_64.zip
 ```
 
 ## Usage
@@ -124,6 +124,8 @@ unzip csv-dl_1.2.0_windows_x86_64.zip
 Usage of csv-dl:
   -H value
     	(alias for -http-header)
+  -dry-run
+    	only print URLs to stdout (one per line), do not download
   -f	(alias for -force-overwrite)
   -force-overwrite
     	overwrite existing files
@@ -133,6 +135,7 @@ Usage of csv-dl:
     	(alias for -link)
   -link value
     	a link to download, may use go {{template}} syntax and refer to data columns by index (column i) or name (field "f")
+  -n	(alias for -dry-run)
   -p int
     	(alias for -parallel) (default 8)
   -parallel int
