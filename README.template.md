@@ -6,6 +6,7 @@
   - [Field names from CSV header](#field-names-from-csv-header)
   - [Field values by column index](#field-values-by-column-index)
   - [Field names from CLI args](#field-names-from-cli-args)
+  - [Relative/incomplete links](#relativeincomplete-links)
 - [Get it](#get-it)
 - [Use it](#use-it)
 
@@ -35,7 +36,7 @@ csv-dl,0.0.1,https://github.com/sgreben/csv-dl/releases/download/0.0.1/csv-dl_0.
 ```
 
 ```sh
-$ <input.csv csv-dl -u -l '{{column 2}}'
+$ <input.csv csv-dl -l '{{column 2}}'
 2019/01/27 12:25:41 https://github.com/sgreben/csv-dl/releases/download/0.0.1/csv-dl_0.0.1_linux_x86_64.zip
 
 $ ls
@@ -50,7 +51,22 @@ csv-dl,0.0.1,https://github.com/sgreben/csv-dl/releases/download/0.0.1/csv-dl_0.
 ```
 
 ```sh
-$ <input.csv csv-dl -s ',,url' -u -l '{{field "url"}}'
+$ <input.csv csv-dl -s ',,url' -l '{{field "url"}}'
+2019/01/27 12:25:41 https://github.com/sgreben/csv-dl/releases/download/0.0.1/csv-dl_0.0.1_linux_x86_64.zip
+
+$ ls
+csv-dl_0.0.1_linux_x86_64.zip
+```
+
+### Relative/incomplete links
+
+**input.csv**
+```csv
+csv-dl,0.0.1,"0.0.1/csv-dl_0.0.1_linux_x86_64.zip"
+```
+
+```sh
+$ <input.csv csv-dl -s ',,link' -l 'https://github.com/sgreben/csv-dl/releases/download/{{field "link"}}'
 2019/01/27 12:25:41 https://github.com/sgreben/csv-dl/releases/download/0.0.1/csv-dl_0.0.1_linux_x86_64.zip
 
 $ ls
